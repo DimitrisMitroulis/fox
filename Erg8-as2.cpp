@@ -3,15 +3,20 @@
 #include <boost/chrono.hpp>
 using namespace std;
 //function to get cofactor of mat[p][q] in temp[][].n
+// mat,temp -> 2d arrays
+// p,q -> row, collumn of element for which the cofactor is calculated
+// n -> row, collumns of array
 void getCofactor(int **mat, int **temp, int p, int q, int n){
 	int i=0,j=0;
 	for (int row=0;row<n;row++) {
 		for (int col=0;col<n;col++) {
-			//Copy into temp  the elements
+			//Copy into temp the elements
 			//which are not in given row,column
 			if (row!=p && col!=q) {
+				// temp is the matrix without row, collum of selected item
 				temp[i][j++]=mat[row][col];
-			
+				
+			// temp has to be n-1*n-1
 			//row is filled so increase row index
 			// reset col index
 				if (j==n-1) {
