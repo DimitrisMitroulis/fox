@@ -60,7 +60,7 @@ bool inverse(int **a, float **inv,int n) {
 		cout << "Mi antistrepsimos matrix !" <<endl;
 		return false;
 	}
-	//find adjoint
+	// allocate memory for adj array
 	int **adj;
 	for (int i=0;i<n;i++) {
 		adj=new int *[n];
@@ -68,6 +68,7 @@ bool inverse(int **a, float **inv,int n) {
 	for (int i=0;i<n;i++) {
 		adj[i]=new int[n];
 	}
+	//find adjoint
 	adjoint(a,adj,n);
 	//find inverse
 	for (int i=0;i<n;i++) {
@@ -75,6 +76,7 @@ bool inverse(int **a, float **inv,int n) {
 			inv[i][j]=adj[i][j]/float(det);
 		}
 	}
+	
 	return true;
 }
 

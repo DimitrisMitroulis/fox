@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-
 // takes as argument 2d array and n,m dimensions and prints row-wise each elemets
 void print_r(double **mat, int n, int m) {
 	for (int i=0;i<n;i++){
@@ -25,7 +24,7 @@ void swap_row(double **mat, int n, int m, int i, int j)
 }
 // forward elimination
 // reduce matrix --> ref
-// gaussian elimination with partial pivoting on a given matrix
+// gaussian elimination with partial pivoting
 int felim(double **mat, int n, int m) {
 	for (int k=0;k<n;k++) {
 	//initialize max value and index of pivot
@@ -67,7 +66,7 @@ int felim(double **mat, int n, int m) {
 //function to calculate values of uknowns
 // returns pointer of type double
 // assumes the matrix is upper triang?
-double *backusb(double **mat, int n, double *y) {
+double *backsub(double **mat, int n, double *y) {
 	/*start calculation of last eq back to first*/
 	for (int i=n-1;i>=0;i--) {
 	//start with the rhs of eq.
@@ -97,9 +96,9 @@ int main(void) {
 			{0.0,1.0,-3.0,0.0},
 			{2.0,-1.0,7.0,6.0}};*/		
 	//Inconsistent system
-	double mat[3][4]={{1.0,-1.0,0.0,1.0},
-			{0.0,1.0,3.0,2.0},
-			{1.0,1.0,6.0,2.0}};
+	double mat[3][4]={{1.0 ,-1.0, 0.0, 1.0},
+			          {0.0 ,1.0,  3.0, 2.0},
+			          {1.0 ,1.0,  6.0, 2.0}};
 			
 	// dynamically allocates memory for a 2D array mp using the new operator
 	// used to store the pointer references to the rows of the matrix above
@@ -107,7 +106,6 @@ int main(void) {
 	
 	for (int i=0;i<4;i++) {
 		mp[i]=mat[i];
-		//cout << mat[i] << ","<<sizeof(double) << endl;
 	}
 	
 	// to store results, prints array
@@ -117,7 +115,6 @@ int main(void) {
 	//1. Felim
 	// transforms to row-echelon form(bottlom left is 0s)
 	int flag=felim(mp,3,4);
-	
 	// inf solutions or inconsistent
 	if (flag!=-1) {
 		//infinitely many sollutions or inconsistent
@@ -130,7 +127,7 @@ int main(void) {
 	// unique solution, calc backsub, print solutions
 	} else {
 		print_r(mp,3,4);
-		y=backusb(mp,3,y);
+		y=backsub(mp,3,y);
 		cout << "------------------------"<< endl;
 		cout  << "Sollution:" << endl;
 		cout << "------------------------"<<endl;
