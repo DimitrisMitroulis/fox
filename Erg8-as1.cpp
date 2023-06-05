@@ -23,11 +23,12 @@ void swap_row(double **mat, int n, int m, int i, int j)
 	}
 }
 // forward elimination
-// reduce matrix --> ref
 // gaussian elimination with partial pivoting
+// takes 2d array and n,m dimensions
 int felim(double **mat, int n, int m) {
 	for (int k=0;k<n;k++) {
-	//initialize max value and index of pivot
+	    
+	    //initialize max value and index of pivot
 		int i_max=k;
 		int v_max=mat[i_max][k];
 		
@@ -65,7 +66,7 @@ int felim(double **mat, int n, int m) {
 }
 //function to calculate values of uknowns
 // returns pointer of type double
-// assumes the matrix is upper triang?
+// assumes the matrix is upper triang
 double *backsub(double **mat, int n, double *y) {
 	/*start calculation of last eq back to first*/
 	for (int i=n-1;i>=0;i--) {
